@@ -1,0 +1,12 @@
+[Unit]
+Description=Deepin Xwall Service
+After=network.target
+
+[Service]
+User=root
+ExecStartPre={MAINDIR}/sbin/xwall start {SERVER_IP}
+ExecStart=/usr/bin/ss-redir -u -c "{MAINDIR}/etc/shadowsocks.json" -n 65535
+ExecStopPost={MAINDIR}/sbin/xwall stop
+
+[Install]
+WantedBy=multi-user.target
