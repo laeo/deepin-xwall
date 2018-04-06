@@ -19,6 +19,7 @@ initial() {
   sudo mkdir -p $MAINDIR/{sbin,etc,data}
   sudo cp -f bin.sh $MAINDIR/sbin/xwall
   sudo sed -i "s?{MAINDIR}?$MAINDIR?g" $MAINDIR/sbin/xwall
+  sudo chmod +x $MAINDIR/sbin/xwall
 
   sudo apt-get install -y wget shadowsocks-libev ipset > /dev/null
   sudo cp -f stubs/deepin-xwall.service.stub /etc/systemd/system/deepin-xwall.service
@@ -44,7 +45,7 @@ destroy() {
   sudo systemctl disable deepin-xwall
   sudo rm -f /etc/systemd/system/deepin-xwall.service
   sudo systemctl daemon-reload
-  sudo apt remove -y shadowsocks-libev
+  # sudo apt remove -y shadowsocks-libev
   sudo rm -rf $MAINDIR
 }
 
