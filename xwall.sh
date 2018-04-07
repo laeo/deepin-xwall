@@ -22,9 +22,9 @@ initial() {
   sudo chmod +x $MAINDIR/sbin/xwall
 
   sudo apt-get install -y wget shadowsocks-libev ipset > /dev/null
-  sudo cp -f stubs/deepin-xwall.service.stub /etc/systemd/system/deepin-xwall.service
-  sudo sed -i "7s/{SERVER_IP}/$1/" /etc/systemd/system/deepin-xwall.service
-  sudo sed -i "s?{MAINDIR}?$MAINDIR?g" /etc/systemd/system/deepin-xwall.service
+  sudo cp -f stubs/deepin-xwall.service.stub /lib/systemd/system/deepin-xwall.service
+  sudo sed -i "7s/{SERVER_IP}/$1/" /lib/systemd/system/deepin-xwall.service
+  sudo sed -i "s?{MAINDIR}?$MAINDIR?g" /lib/systemd/system/deepin-xwall.service
   sudo systemctl daemon-reload
 
   sudo cp -f stubs/shadowsocks.json.stub $MAINDIR/etc/shadowsocks.json
@@ -43,7 +43,7 @@ initial() {
 destroy() {
   sudo systemctl stop deepin-xwall
   sudo systemctl disable deepin-xwall
-  sudo rm -f /etc/systemd/system/deepin-xwall.service
+  sudo rm -f /lib/systemd/system/deepin-xwall.service
   sudo systemctl daemon-reload
   # sudo apt remove -y shadowsocks-libev
   sudo rm -rf $MAINDIR
