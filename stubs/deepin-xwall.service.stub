@@ -1,6 +1,6 @@
 [Unit]
 Description=Deepin Xwall Service
-After=network-online.target
+After=network.target
 
 [Service]
 User=root
